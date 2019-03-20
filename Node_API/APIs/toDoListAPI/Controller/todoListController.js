@@ -9,8 +9,8 @@ var db=require('../Models/modelToDo');
     // console.log(JSON.parse(req));
     db.getAllUsers(function(err,task,res) {
       // console.log('working bi***es');
-      if(err)
-        res.send(err+'abcdefghijklmnopqrstuvwxyz');
+      if(err) return callback(err, null);
+        
       return callback(null, task);
     });
     // console.log("abc3");
@@ -25,6 +25,15 @@ var db=require('../Models/modelToDo');
   		// console.log(task.message);
   		return callback(null, task);
   	});
+  },
+  updateUser : function(callback){
+    console.log('hits controller update');
+    db.updateUser(function(err,task){
+      if(err)
+        res.send(err);
+      // console.log(task.message);
+      return callback(null, task);
+    });
   }
 };
 module.exports=Strain;

@@ -19,10 +19,21 @@ var users={
 	insertUser:function(callback){
 		// con.connect(function(err){
 			// if(err) throw err;
-			var query_2="insert into users (name,contact,age,address,email,username,password,parent) values ('abc','323','22','kolkata','acb@gmail.com','h5so4','raq',NULL) ";
+			var query_2="insert into users (name,email,username,password) values ('abc','acb@gmail.com','h5so4','raq') ";
 			con.query(query_2,function(err,res,field){
 				if(err) callback(err, null);
 				console.log("data inserted sucessfully");
+				return callback(null,res);
+			});
+		// });
+	},
+	updateUser:function(callback){
+		// con.connect(function(err){
+			// if(err) throw err;
+			var query_2="update users set name = 'Aquaman' where username = 'h5so4' ";
+			con.query(query_2,function(err,res,field){
+				if(err) callback(err, null);
+				console.log("data updated sucessfully");
 				return callback(null,res);
 			});
 		// });

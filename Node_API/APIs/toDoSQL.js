@@ -2,7 +2,7 @@
  var con = mysql.createConnection({
   host:'localhost',
  user:'root',
- password:'ajay',
+ password:'',
  database:'test'
 });
 

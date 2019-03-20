@@ -16,6 +16,7 @@ module.exports = function(app) {
     });
     
   });
+
   app.get('/addUser',function(req,res){
     console.log('hitting insert route');
     todoList.insertUser(function(err,req,resp){
@@ -23,15 +24,15 @@ module.exports = function(app) {
       res.send('data inserted sucessfully');
     });
   });
-  // app.route('/tasks')
-  //   .get(todoList.list_all_tasks);
-  //   .post(todoList.create_a_task);
 
-
-  // app.route('/tasks/:taskId')
-  //   .get(todoList.read_a_task)
-  //   .put(todoList.update_a_task)
-  //   .delete(todoList.delete_a_task);
+  app.get('/updateUser',function(req,res){
+    console.log('hitting update route');
+    todoList.updateUser(function(err,req,resp){
+      if(err) throw err;
+      res.send('data updated sucessfully');
+    });
+  });
+  
   app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'});
   });
