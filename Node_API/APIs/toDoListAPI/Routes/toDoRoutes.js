@@ -12,14 +12,14 @@ module.exports = function(app) {
   app.get('/tasks',function(req,resp){
     todoList.getAllUsers(function(err,req,res){
       if (err) throw err;
-      resp.send('task is happening'+JSON.stringify(req));
+      resp.send(JSON.stringify(req));
     });
     
   });
 
-  app.get('/addUser',function(req,res){
-    console.log('hitting insert route');
-    todoList.insertUser(function(err,req,resp){
+  app.post('/addUser',function(req,res){
+    console.log(req.body);
+    todoList.insertUser(req,function(err,req,resp){
       if(err) throw err;
       res.send('data inserted sucessfully');
     });
@@ -32,7 +32,15 @@ module.exports = function(app) {
       res.send('data updated sucessfully');
     });
   });
-  
+
+  app.use('/getUserById',function(req,res){
+    var id=req.id;
+    todoList.getUserById(id,function(err,req,resp){
+      if(err) throw err;
+      res.send('data updated successfully');
+    });
+  });
+
   app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'});
   });

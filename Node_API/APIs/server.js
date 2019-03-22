@@ -17,9 +17,9 @@ routes(app);
 // app.set('views', __dirname + '/views');
 
 
-app.use(function(req, res) {
-  res.status(404).send({url: req.originalUrl + ' not found'})
-});
+// app.use(function(req, res) {
+//   res.status(404).send({url: req.originalUrl + ' not found'})
+// });
 
 var server = app.listen(8081, function () {
    var host = server.address().address

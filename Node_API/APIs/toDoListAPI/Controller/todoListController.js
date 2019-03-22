@@ -17,11 +17,11 @@ var db=require('../Models/modelToDo');
   },
 // };
 
-  insertUser : function(callback){
-    console.log('hits controller insert');
-  	db.insertUser(function(err,task){
+  insertUser : function(req,callback){
+    console.log(req.body);
+  	db.insertUser(req,function(err,task){
   		if(err)
-  			res.send(err);
+  			throw err;
   		// console.log(task.message);
   		return callback(null, task);
   	});

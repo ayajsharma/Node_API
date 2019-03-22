@@ -16,11 +16,22 @@ var users={
 		
 		// con.end();
 	},
-	insertUser:function(callback){
+	insertUser:function(req,callback){
 		// con.connect(function(err){
 			// if(err) throw err;
-			var query_2="insert into users (name,email,username,password) values ('abc','acb@gmail.com','h5so4','raq') ";
-			con.query(query_2,function(err,res,field){
+			var name=req.body.name;
+			var email=req.body.email;
+			var username=req.body.username;
+			var password=req.body.password;
+			var postMan  = {
+			  name: name,
+			  email: email,
+			  username: username,
+			  password:password
+			};
+			console.log(name);
+			var query_2="insert into users set ?";
+			con.query(query_2,postMan,function(err,res,field){
 				if(err) callback(err, null);
 				console.log("data inserted sucessfully");
 				return callback(null,res);
