@@ -17,6 +17,15 @@ module.exports = function(app) {
     
   });
 
+  app.get('/tasks/:username',function(req,resp){
+    var un=req.params.username;
+    todoList.getAllUsers(un,function(err,req,res){
+      if (err) throw err;
+      resp.send(JSON.stringify(req));
+    });
+    
+  });
+
   app.post('/addUser',function(req,res){
     console.log(req.body);
     todoList.insertUser(req,function(err,req,resp){

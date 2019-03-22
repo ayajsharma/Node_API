@@ -5,10 +5,10 @@ var db=require('../Models/modelToDo');
 //create class
  var Strain = {
 //function to query all items
-  getAllUsers : function (callback) {
+  getAllUsers : function (un,callback) {
     // console.log(JSON.parse(req));
-    db.getAllUsers(function(err,task,res) {
-      // console.log('working bi***es');
+    db.getAllUsers(un,function(err,task,res) {
+      console.log(un);
       if(err) return callback(err, null);
         
       return callback(null, task);

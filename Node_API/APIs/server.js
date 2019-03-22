@@ -2,12 +2,14 @@ var express = require('express');
 var bodyParser= require('body-parser');
 var sql = require("mysql");
 var app = express();
+const morgan = require('morgan');
 // var Task = require('./toDoListAPI/Models/modelToDo');
 var route=express.Router();
 // var db = 
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json())
+	.use(morgan());
 
 var routes = require('./toDoListAPI/Routes/toDoRoutes'); //importing route
 routes(app);

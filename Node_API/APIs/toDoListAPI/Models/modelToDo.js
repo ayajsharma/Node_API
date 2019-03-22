@@ -3,16 +3,32 @@
  // console.log(con);
 var users={
  
-	getAllUsers:function(callback){ 
+	getAllUsers:function(un,callback){ 
 		// con.connect();
-			var query_1="select * from users";
-			con.query(query_1,function(err,result,field){
+		console.log(un);
+			if(un){
+				var query_1="select * from users where username = ?";
+				con.query(query_1,un,function(err,result,field){
 				// if(err) throw err;
-				console.log("model to do is working ");
-				// return JSON.stringify(result);
-				if (err) return callback(err, null);
-                return callback(null, result);
-			});
+					console.log("model to do is working with where clause ");
+
+					// return JSON.stringify(result);
+					if (err) return callback(err, null);
+	                return callback(null, result);
+				});
+			}
+			else{
+				var query_1="select * from users";
+				con.query(query_1,function(err,result,field){
+				// if(err) throw err;
+					console.log("model to do is working ");
+					// return JSON.stringify(result);
+					if (err) return callback(err, null);
+	                return callback(null, result);
+				});
+			}
+			
+			
 		
 		// con.end();
 	},
